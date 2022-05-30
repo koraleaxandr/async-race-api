@@ -36,7 +36,7 @@ const server = jsonServer.create();
 const router = jsonServer.router(db);
 const middleWares = jsonServer.defaults();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const state = { velocity: {}, blocked: {} };
 
@@ -94,9 +94,6 @@ server.patch('/engine', (req, res) => {
 });
 
 server.use(router);
-if (port == null || port == "") {
-    port = 8000;
-  }
 server.listen(port, () => {
     console.log('Server is running on port', port);
 });
