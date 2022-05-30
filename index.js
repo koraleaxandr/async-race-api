@@ -13,7 +13,7 @@ const db = {
             "id": 2,
         },
         {
-            "name": "Mersedes",
+            "name": "Mercedes",
             "color": "#6c779f",
             "id": 3,
         },
@@ -34,13 +34,13 @@ const db = {
 
 const server = jsonServer.create();
 const router = jsonServer.router(db);
-const middlewares = jsonServer.defaults();
+const middleWares = jsonServer.defaults();
 
-const PORT = 3000;
+const port = process.env.port ||3000;
 
 const state = { velocity: {}, blocked: {} };
 
-server.use(middlewares);
+server.use(middleWares);
 
 server.patch('/engine', (req, res) => {
     const { id, status } = req.query;
@@ -94,6 +94,6 @@ server.patch('/engine', (req, res) => {
 });
 
 server.use(router);
-server.listen(PORT, () => {
-    console.log('Server is running on port', PORT);
+server.listen(port, () => {
+    console.log('Server is running on port', port);
 });
